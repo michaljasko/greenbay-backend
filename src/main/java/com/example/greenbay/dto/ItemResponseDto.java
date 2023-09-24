@@ -1,23 +1,15 @@
-package com.example.greenbay.model;
+package com.example.greenbay.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.persistence.*;
-
-@Schema(description = "Class representing an item available to sale.")
-@Entity
-@Table(name = "app_item")
-public class Item {
-    @Schema(description = "Unique identifier of the item.", example = "1", accessMode = Schema.AccessMode.READ_ONLY)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ItemResponseDto {
+    @Schema(description = "Unique identifier of the item.", example = "1")
     private Long id;
 
     @Schema(description = "Name of the item.", example = "iPhone 39")
     private String name;
 
     @Schema(description = "Description of the item.", example = "Device from the future, mint condition.")
-    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Schema(description = "Price of the item as a whole number.", example = "899")
@@ -26,30 +18,11 @@ public class Item {
     @Schema(description = "Item image path.")
     private String photo;
 
-    @Schema(description = "ID of the User, who sells this item.", example = "1")
-    @ManyToOne
-    @JoinColumn(name = "seller_id")
-    private User seller;
+    @Schema(description = "Username of the User, who sells this item.", example = "1")
+    private String seller;
 
-    @Schema(description = "ID of the User, who bought this item.", example = "2")
-    @ManyToOne
-    @JoinColumn(name = "buyer_id")
-    private User buyer;
-
-    // Constructors
-
-    public Item() {
-    }
-
-    public Item(String name, String description, Integer price, String photo, User seller) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.photo = photo;
-        this.seller = seller;
-    }
-
-    // Getters and setters
+    @Schema(description = "Username of the User, who bought this item.", example = "2")
+    private String buyer;
 
     public Long getId() {
         return id;
@@ -91,19 +64,19 @@ public class Item {
         this.photo = photo;
     }
 
-    public User getSeller() {
+    public String getSeller() {
         return seller;
     }
 
-    public void setSeller(User seller) {
+    public void setSeller(String seller) {
         this.seller = seller;
     }
 
-    public User getBuyer() {
+    public String getBuyer() {
         return buyer;
     }
 
-    public void setBuyer(User buyer) {
+    public void setBuyer(String buyer) {
         this.buyer = buyer;
     }
 }

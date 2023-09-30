@@ -10,6 +10,7 @@ import com.example.greenbay.repository.UserRepository;
 import com.example.greenbay.validator.ItemRequestDtoValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
@@ -25,6 +26,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItemServiceImpl implements ItemService {
+    @Value("${upload.dir}")
+    private String uploadDir;
+
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
@@ -105,7 +109,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public String savePhoto(MultipartFile photo) {
         String fileName = System.currentTimeMillis() + "_" + photo.getOriginalFilename();
-        String filePath = "${upload.dir}" + fileName;
+        String filePath = uploadDir + fileName;
 
         try {
             photo.transferTo(new File(filePath));

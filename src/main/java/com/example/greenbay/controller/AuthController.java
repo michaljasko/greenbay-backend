@@ -69,6 +69,7 @@ public class AuthController {
             response.put("token", token);
             response.put("username", user.getUsername());
             response.put("id", user.getId());
+            response.put("money", user.getMoney());
 
             return ResponseEntity.ok(response);
         } else {

@@ -53,8 +53,7 @@ public class UserService {
     public UserDto getUserDtoByUsername(String username) {
         User user = userRepository.findByUsername(username);
         if (user != null) {
-            Long id = user.getId();
-            return new UserDto(user.getUsername(), id);
+            return new UserDto(user.getUsername(), user.getId(), user.getMoney());
         }
         return null;
     }

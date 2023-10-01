@@ -9,9 +9,13 @@ public class UserDto {
     @Schema(description = "Unique identifier of the user.", example = "1")
     private Long id;
 
-    public UserDto(String username, Long id) {
+    @Schema(description = "Amount of money owned by the user. Whole number.", example = "100")
+    private Integer money;
+
+    public UserDto(String username, Long id, Integer money) {
         this.username = username;
         this.id = id;
+        this.money = money;
     }
 
     public String getUsername() {
@@ -29,4 +33,8 @@ public class UserDto {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Integer getMoney() { return money; }
+
+    public void setMoney(Integer money) { this.money = money; }
 }

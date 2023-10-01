@@ -70,13 +70,9 @@ public class User {
         this.password = password;
     }
 
-    public Integer getMoney() {
-        return money;
-    }
+    public Integer getMoney() { return money; }
 
-    public void setMoney(Integer money) {
-        this.money = money;
-    }
+    public void setMoney(Integer money) { this.money = money; }
 
     public List<Item> getSelling() {
         return selling;

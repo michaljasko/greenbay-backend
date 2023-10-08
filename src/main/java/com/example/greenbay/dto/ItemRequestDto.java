@@ -12,7 +12,7 @@ public class ItemRequestDto {
     @Schema(description = "Price of the item as a whole number.", example = "899")
     private Integer price;
 
-    @Schema(description = "Item image path.")
+    @Schema(description = "Item image url.")
     private String photo;
 
     public String getName() {

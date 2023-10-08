@@ -20,7 +20,7 @@ public class MapperConfig {
                 .addMappings(mapper -> mapper.map(src -> src.getSeller().getUsername(), ItemResponseDto::setSeller))
                 .addMappings(mapper -> mapper.map(src -> src.getBuyer().getUsername(), ItemResponseDto::setBuyer));
 
-        // Skip seller and buyer username when converting DTO to Restaurant object
+        // Skip seller and buyer username when converting DTO to Item object
         modelMapper.createTypeMap(ItemRequestDto.class, Item.class)
                 .addMappings(mapper -> mapper.skip(Item::setSeller))
                 .addMappings(mapper -> mapper.skip(Item::setBuyer));

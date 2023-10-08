@@ -1,4 +1,5 @@
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\controller\AuthController.java
+E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\exception\GlobalExceptionHandler.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\exception\ValidationException.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\service\UserService.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\validator\ItemRequestDtoValidator.java
@@ -7,7 +8,6 @@ E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\service
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\dto\UserDto.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\repository\ItemRepository.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\GreenbayApplication.java
-E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\config\ImageConfig.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\config\MapperConfig.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\dto\ItemResponseDto.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\model\Item.java
@@ -16,6 +16,7 @@ E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\dto\Ite
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\service\ItemServiceImpl.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\util\JwtFilter.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\service\ItemService.java
+E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\service\UserServiceImpl.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\util\JwtUtil.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\config\SwaggerConfig.java
 E:\OneDrive\GreenFox\greenbay-backend\src\main\java\com\example\greenbay\model\User.java

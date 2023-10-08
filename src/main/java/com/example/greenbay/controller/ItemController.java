@@ -9,10 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.List;
@@ -45,25 +43,9 @@ public class ItemController {
             @ApiResponse(responseCode = "200", description = "Created item object", content = @Content(schema = @Schema(implementation = ItemResponseDto.class)))
     })
     @PostMapping("/")
-    public ItemResponseDto addNewItem(
-            @RequestParam(value = "photo", required = false) MultipartFile photo,
-            @RequestParam("name") String name,
-            @RequestParam("description") String description,
-            @RequestParam("price") Integer price,
-            Principal user) {
-        ItemRequestDto itemRequestDto = new ItemRequestDto();
-        itemRequestDto.setName(name);
-        itemRequestDto.setDescription(description);
-        itemRequestDto.setPrice(price);
-
-        if (photo != null && !photo.isEmpty()) {
-            String fileName = itemService.savePhoto(photo);
-            itemRequestDto.setPhoto(fileName);
-        }
-
+    public ItemResponseDto addNewItem(@RequestBody ItemRequestDto itemDto, Principal user) {
         String username = user.getName();
-
-        return itemService.addNewItem(itemRequestDto, username);
+        return itemService.addNewItem(itemDto, username);
     }
 
     @Operation(summary = "Buy the item", description = "Provide item ID")

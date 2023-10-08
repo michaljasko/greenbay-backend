@@ -10,15 +10,11 @@ import com.example.greenbay.repository.UserRepository;
 import com.example.greenbay.validator.ItemRequestDtoValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -26,8 +22,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ItemServiceImpl implements ItemService {
-    @Value("${upload.dir}")
-    private String uploadDir;
 
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
@@ -72,11 +66,8 @@ public class ItemServiceImpl implements ItemService {
 
         User seller = userRepository.findByUsername(username);
 
-        Item item = new Item(itemDto.getName(),
-                itemDto.getDescription(),
-                itemDto.getPrice(),
-                itemDto.getPhoto(),
-                seller);
+        Item item = modelMapper.map(itemDto, Item.class);
+        item.setSeller(seller);
 
         Item newItem = itemRepository.save(item);
         return modelMapper.map(newItem, ItemResponseDto.class);
@@ -88,8 +79,9 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(() -> new EntityNotFoundException("Item not found with id " + itemId));
 
         User buyer = userRepository.findByUsername(username);
+        User seller = item.getSeller();
 
-        if (Objects.equals(item.getSeller().getUsername(), username)) {
+        if (Objects.equals(seller.getUsername(), username)) {
             throw new RuntimeException("You cannot buy your own item.");
         }
         if (item.getBuyer() != null) {
@@ -104,19 +96,7 @@ public class ItemServiceImpl implements ItemService {
 
         buyer.setMoney(buyer.getMoney() - item.getPrice());
         userRepository.save(buyer);
-    }
-
-    @Override
-    public String savePhoto(MultipartFile photo) {
-        String fileName = System.currentTimeMillis() + "_" + photo.getOriginalFilename();
-        String filePath = uploadDir + fileName;
-
-        try {
-            photo.transferTo(new File(filePath));
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to save photo: " + e.getMessage());
-        }
-
-        return "/images/" + fileName;
+        seller.setMoney(seller.getMoney() + item.getPrice());
+        userRepository.save(seller);
     }
 }

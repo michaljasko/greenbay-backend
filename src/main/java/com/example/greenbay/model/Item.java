@@ -23,7 +23,7 @@ public class Item {
     @Schema(description = "Price of the item as a whole number.", example = "899")
     private Integer price;
 
-    @Schema(description = "Item image path.")
+    @Schema(description = "Item image url.")
     private String photo;
 
     @Schema(description = "ID of the User, who sells this item.", example = "1")

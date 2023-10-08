@@ -6,8 +6,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import java.math.BigDecimal;
-
 
 @Component
 public class ItemRequestDtoValidator implements Validator {
